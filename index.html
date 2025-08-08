@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Surebet Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Calculadora en el lado izquierdo -->
+        <div class="calculator-section">
+            <div class="calculator-card">
+                <div class="header">
+                    <div class="header-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="header-content">
+                        <h1>Calculadora Surebet</h1>
+                        <p>Apuestas deportivas seguras</p>
+                    </div>
+                </div>
+
+                <div class="calculator-content">
+                    <div class="table-container">
+                        <table class="modern-table">
+    <thead>
+        <tr>
+                                    <th><i class="fas fa-chart-line"></i> Cuota</th>
+                                    <th><i class="fas fa-dollar-sign"></i> Apuesta</th>
+                                    <th><i class="fas fa-lock"></i> Fijo</th>
+                                    <th><i class="fas fa-trophy"></i> Beneficio</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Fila 1 -->
+                                <tr class="table-row">
+                                    <td>
+                                        <div class="input-wrapper">
+                                            <input type="number" step="0.001" class="cuota modern-input" value="4" placeholder="0.000">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-wrapper">
+                                            <input type="number" step="0.01" class="apuesta modern-input" value="0" placeholder="0.00">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio-wrapper">
+                                            <input type="radio" name="fijo" class="fijo modern-radio" id="radio1" checked>
+                                            <label for="radio1" class="radio-label"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="beneficio-wrapper">
+                                            <span class="beneficio">0.00</span>
+                                        </div>
+                                    </td>
+        </tr>
+        <!-- Fila 2 -->
+                                <tr class="table-row">
+                                    <td>
+                                        <div class="input-wrapper">
+                                            <input type="number" step="0.001" class="cuota modern-input" value="3" placeholder="0.000">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-wrapper">
+                                            <input  step="0.01" class="apuesta modern-input" value="0" placeholder="0.00">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio-wrapper">
+                                            <input type="radio" name="fijo" class="fijo modern-radio" id="radio2">
+                                            <label for="radio2" class="radio-label"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="beneficio-wrapper">
+                                            <span class="beneficio">0.00</span>
+                                        </div>
+                                    </td>
+        </tr>
+        <!-- Fila 3 -->
+                                <tr class="table-row">
+                                    <td>
+                                        <div class="input-wrapper">
+                                            <input type="number" step="0.001" class="cuota modern-input" value="3" placeholder="0.000">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-wrapper">
+                                            <input  step="0.01" class="apuesta modern-input" value="0" placeholder="0.00">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="radio-wrapper">
+                                            <input type="radio" name="fijo" class="fijo modern-radio" id="radio3">
+                                            <label for="radio3" class="radio-label"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="beneficio-wrapper">
+                                            <span class="beneficio">0.00</span>
+                                        </div>
+                                    </td>
+        </tr>
+    </tbody>
+                        </table>
+                    </div>
+
+                    <div class="summary-card">
+                        <div class="summary-item">
+                            <div class="summary-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="summary-content">
+                                <span class="summary-label">Apuesta Total</span>
+                                <span class="summary-value" id="apuesta-total">S/0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculadora FREEBET en el lado derecho -->
+        <div class="right-section">
+            <div class="freebet-card">
+                <div class="freebet-header">
+                    <div class="header-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="header-content">
+                        <h1>Calculadora FREEBET</h1>
+                        <p>Optimiza tus apuestas gratuitas</p>
+                    </div>
+                </div>
+
+                <div class="freebet-content">
+                    <!-- Porcentaje destacado arriba -->
+                    <div class="percentage-display">
+                        <span class="percentage-value" id="percentage-top">86.61616162%</span>
+                    </div>
+
+                    <!-- Input para FREEBET -->
+                    <div class="freebet-input-section">
+                        <label for="freebet-amount" class="freebet-label">
+                            <i class="fas fa-ticket-alt"></i>
+                            Valor FREEBET
+                        </label>
+                        <div class="freebet-input-wrapper">
+                            <input type="number" id="freebet-amount" class="freebet-input" value="250" min="0" step="0.01" placeholder="Ingresa el valor del FREEBET">
+                            <span class="currency-symbol">S/</span>
+                        </div>
+                    </div>
+
+                    <!-- Tabla de cálculos FREEBET -->
+                    <div class="freebet-table-container">
+                        <table class="freebet-table">
+                            <thead>
+                                <tr>
+                                    <th>Mercado</th>
+                                    <th>Cuota</th>
+                                    <th>Apuesta</th>
+                                    <th>Ganancia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="freebet-row freebet-main">
+                                    <td>
+                                        <div class="market-label">
+                                            <i class="fas fa-star"></i>
+                                            <span>CUOTA 1 (FREEBET)</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="freebet-cuota" id="cuota-freebet" value="3" step="0.01" min="1.01">
+                                    </td>
+                                    <td>
+                                        <div class="ganancia-value" id="ganancia-freebet">S/840.00</div>
+                                    </td>
+                                    <td>
+                                        <div class="ganancia-final" id="ganancia-freebet-final">S/103.94</div>
+                                    </td>
+                                </tr>
+                                <tr class="freebet-row">
+                                    <td>
+                                        <div class="market-label">
+                                            <span>CUOTA 2</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="freebet-cuota" id="cuota2" value="2.5" step="0.01" min="1.01">
+                                    </td>
+                                    <td>
+                                        <div class="apuesta-calculada" id="apuesta2">S/152.73</div>
+                                    </td>
+                                    <td>
+                                        <div class="ganancia-value" id="ganancia2">S/103.94</div>
+                                    </td>
+                                </tr>
+                                <tr class="freebet-row">
+                                    <td>
+                                        <div class="market-label">
+                                            <span>CUOTA 3</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="freebet-cuota" id="cuota3" value="2" step="0.01" min="1.01">
+                                    </td>
+                                    <td>
+                                        <div class="apuesta-calculada" id="apuesta3">S/583.33</div>
+                                    </td>
+                                    <td>
+                                        <div class="ganancia-value" id="ganancia3">S/103.94</div>
+                                    </td>
+        </tr>
+                            </tbody>
+</table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <!-- Firma del desarrollador -->
+    <footer class="developer-signature">
+        <div class="signature-content">
+            <div class="signature-text">
+                <i class="fas fa-code"></i>
+                Desarrollado por <strong>MAOR</strong> 
+                <span class="year">© 2025</span>
+            </div>
+            <div class="signature-tech">
+                <i class="fas fa-laptop-code"></i>
+                Calculadoras Deportivas Profesionales
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
