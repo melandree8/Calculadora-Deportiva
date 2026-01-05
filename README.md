@@ -14,6 +14,10 @@ Aplicación web que permite realizar cálculos rápidos para apuestas deportivas
 - Cálculo de ganancias según cuota
 - Interfaz simple y rápida
 - Diseño responsive
-- Uso directo desde el navegador
+- Uso directo desde el navegador.
 
-## 📂 Estructura del proyecto
+
+## 👤 Autor
+**Mel Andree Orellana Rodríguez**  
+Estudiante de Ingeniería de Software
+
