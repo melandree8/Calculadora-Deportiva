@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="ui-controls">
-        <button id="reset-btn" class="icon-btn" title="Reiniciar">
+        <button id="reset-btn" class="icon-btn" title="Reiniciar todo">
             <i class="fas fa-rotate-left"></i>
         </button>
         <label class="theme-toggle" title="Modo oscuro">
@@ -21,276 +21,127 @@
             </span>
         </label>
     </div>
+
     <div class="container">
-        <!-- Calculadora en el lado izquierdo -->
-        <div class="calculator-section" id="surebet">
+        <div class="page-toolbar">
+            <h2 class="page-title"><i class="fas fa-calculator"></i> Mis calculadoras</h2>
+            <button type="button" id="btn-agregar-calculadora" class="btn-agregar-calculadora">
+                <i class="fas fa-plus"></i> Agregar calculadora
+            </button>
+        </div>
+
+        <div class="resumen-global summary-card summary-card-compact">
+            <div class="resumen-global-titulo"><i class="fas fa-layer-group"></i> Total general</div>
+            <div class="summary-grid-surebet">
+                <div class="summary-item">
+                    <div class="summary-icon"><i class="fas fa-coins"></i></div>
+                    <div class="summary-content">
+                        <span class="summary-label">Inversión Total</span>
+                        <span class="summary-value" id="total-inversion-global">S/0.00</span>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon"><i class="fas fa-shield-halved"></i></div>
+                    <div class="summary-content">
+                        <span class="summary-label">Retorno Bruto Total</span>
+                        <span class="summary-value" id="total-retorno-global">S/0.00</span>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon"><i class="fas fa-scale-balanced"></i></div>
+                    <div class="summary-content">
+                        <span class="summary-label">Pérdida/Ganancia Total</span>
+                        <span class="summary-value" id="total-beneficio-global">S/0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="calculadoras-container" class="calculadoras-container"></div>
+    </div>
+
+    <template id="calculadora-template">
+        <div class="calculator-section calculator-instance">
             <div class="calculator-card">
                 <div class="header">
                     <div class="header-icon">
                         <i class="fas fa-calculator"></i>
                     </div>
                     <div class="header-content">
-                        <h1>Calculadora Surebet</h1>
-                        <p>Apuestas deportivas seguras</p>
+                        <h1 class="calculadora-titulo">Calculadora Surebet</h1>
                     </div>
+                    <button type="button" class="btn-eliminar-calculadora" title="Eliminar calculadora">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
 
-                <div class="calculator-content">
-                    <div class="match-card">
-                        <div class="match-row">
-                            <div class="team">
-                                <label for="team-a" class="team-label">
-                                    <i class="fas fa-flag"></i>
-                                    Equipo 1
-                                </label>
-                                <input type="text" id="team-a" class="modern-input team-input" placeholder="Equipo 1">
-                            </div>
-                            <div class="vs">VS</div>
-                            <div class="team">
-                                <label for="team-b" class="team-label">
-                                    <i class="fas fa-flag-checkered"></i>
-                                    Equipo 2
-                                </label>
-                                <input type="text" id="team-b" class="modern-input team-input" placeholder="Equipo 2">
+                <div class="calculator-content calculator-content-horizontal">
+                    <div class="surebet-controls-row">
+                        <div class="perdida-fija-section perdida-fija-inline">
+                            <label class="perdida-fija-label">
+                                <i class="fas fa-chart-line"></i>
+                                Pérdida fija
+                            </label>
+                            <input type="number" class="modern-input perdida-fija-input perdida-fija" value="-10" step="0.01" placeholder="-10">
+                        </div>
+                        <div class="resultado-toggle">
+                            <span class="resultado-toggle-label">Resultado</span>
+                            <div class="resultado-toggle-btns">
+                                <button type="button" class="btn-resultado btn-ganado active" data-resultado="ganado">
+                                    <i class="fas fa-check"></i> Ganado
+                                </button>
+                                <button type="button" class="btn-resultado btn-perdido" data-resultado="perdido">
+                                    <i class="fas fa-times"></i> Perdido
+                                </button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="surebet-error" hidden></div>
+
                     <div class="table-container">
                         <table class="modern-table">
-    <thead>
+                            <thead>
                                 <tr>
-                                    <th class="resultado-header"><i class="fas fa-users"></i> Equipo</th>
-                                    <th><i class="fas fa-chart-line"></i> Cuota</th>
-                                    <th><i class="fas fa-dollar-sign"></i> Apuesta</th>
-                                    <th><i class="fas fa-lock"></i> Fijo</th>
-                                    <th><i class="fas fa-trophy"></i> Beneficio</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Fila 1 -->
-                                <tr class="table-row">
-                                    <td class="resultado-col"><span id="label-row-1">Equipo 2</span></td>
-                                    <td>
-                                        <div class="input-wrapper">
-                                            <input type="number" step="0.001" class="cuota modern-input" value="4" placeholder="0.000">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-wrapper">
-                                            <input type="number" step="0.01" class="apuesta modern-input" value="0" placeholder="0.00">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="radio-wrapper">
-                                            <input type="radio" name="fijo" class="fijo modern-radio" id="radio1" checked>
-                                            <label for="radio1" class="radio-label"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="beneficio-wrapper">
-                                            <span class="beneficio">0.00</span>
-                                        </div>
-                                    </td>
-        </tr>
-        <!-- Fila 2 -->
-                                <tr class="table-row">
-                                    <td class="resultado-col"><span id="label-row-2">Empate</span></td>
-                                    <td>
-                                        <div class="input-wrapper">
-                                            <input type="number" step="0.001" class="cuota modern-input" value="3" placeholder="0.000">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-wrapper">
-                                            <input  step="0.01" class="apuesta modern-input" value="0" placeholder="0.00">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="radio-wrapper">
-                                            <input type="radio" name="fijo" class="fijo modern-radio" id="radio2">
-                                            <label for="radio2" class="radio-label"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="beneficio-wrapper">
-                                            <span class="beneficio">0.00</span>
-                                        </div>
-                                    </td>
-        </tr>
-        <!-- Fila 3 -->
-                                <tr class="table-row">
-                                    <td class="resultado-col"><span id="label-row-3">Equipo 1</span></td>
-                                    <td>
-                                        <div class="input-wrapper">
-                                            <input type="number" step="0.001" class="cuota modern-input" value="3" placeholder="0.000">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="input-wrapper">
-                                            <input  step="0.01" class="apuesta modern-input" value="0" placeholder="0.00">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="radio-wrapper">
-                                            <input type="radio" name="fijo" class="fijo modern-radio" id="radio3">
-                                            <label for="radio3" class="radio-label"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="beneficio-wrapper">
-                                            <span class="beneficio">0.00</span>
-                                        </div>
-                                    </td>
-        </tr>
-    </tbody>
+                                    <th class="resultado-header th-equipo"><i class="fas fa-users"></i> Equipo</th>
+                                    <th class="th-cuota"><i class="fas fa-chart-line"></i> Cuota</th>
+                                    <th class="th-apuesta"><i class="fas fa-dollar-sign"></i> Apuesta</th>
+                                    <th class="th-beneficio"><i class="fas fa-trophy"></i> Beneficio</th>
+                                </tr>
+                            </thead>
+                            <tbody class="filas-tbody"></tbody>
                         </table>
                     </div>
 
-                    <div class="summary-card">
-                        <div class="summary-item">
-                            <div class="summary-icon">
-                                <i class="fas fa-coins"></i>
+                    <div class="summary-card summary-card-compact">
+                        <div class="summary-grid-surebet">
+                            <div class="summary-item">
+                                <div class="summary-icon"><i class="fas fa-coins"></i></div>
+                                <div class="summary-content">
+                                    <span class="summary-label">Inversión Total</span>
+                                    <span class="summary-value apuesta-total">S/0.00</span>
+                                </div>
                             </div>
-                            <div class="summary-content">
-                                <span class="summary-label">Apuesta Total</span>
-                                <span class="summary-value" id="apuesta-total">S/0.00</span>
+                            <div class="summary-item">
+                                <div class="summary-icon"><i class="fas fa-shield-halved"></i></div>
+                                <div class="summary-content">
+                                    <span class="summary-label">Retorno Bruto</span>
+                                    <span class="summary-value retorno-objetivo">S/0.00</span>
+                                </div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="summary-icon"><i class="fas fa-scale-balanced"></i></div>
+                                <div class="summary-content">
+                                    <span class="summary-label">Ganancia Real</span>
+                                    <span class="summary-value beneficio-real">S/0.00</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Calculadora FREEBET en el lado derecho -->
-        <div class="right-section" id="freebet">
-            <div class="freebet-card">
-                <div class="freebet-header">
-                    <div class="header-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="header-content">
-                        <h1>Calculadora FREEBET</h1>
-                        <p>Optimiza tus apuestas gratuitas</p>
-                    </div>
-                </div>
-
-                <div class="freebet-content">
-                    <!-- Porcentaje destacado arriba -->
-                    <div class="percentage-display">
-                        <span class="percentage-value" id="percentage-top">86.61616162%</span>
-                    </div>
-
-                    <!-- Input para FREEBET -->
-                    <div class="freebet-input-section">
-                        <label for="freebet-amount" class="freebet-label">
-                            <i class="fas fa-ticket-alt"></i>
-                            Valor FREEBET
-                        </label>
-                        <div class="freebet-input-wrapper">
-                            <input type="number" id="freebet-amount" class="freebet-input" value="250" min="0" step="0.01" placeholder="Ingresa el valor del FREEBET">
-                            <span class="currency-symbol">S/</span>
-                        </div>
-                    </div>
-
-                <!-- Selección de nombres para cada cuota -->
-                <div class="market-name-selects">
-                    <div class="market-select">
-                        <label for="label-text-1" class="freebet-label"><i class="fas fa-tag"></i> Nombre CUOTA 1</label>
-                        <input type="text" id="label-text-1" class="market-text-input" placeholder="Ej. Local / Equipo A">
-                    </div>
-                    <div class="market-select">
-                        <label for="label-text-2" class="freebet-label"><i class="fas fa-tag"></i> Nombre CUOTA 2</label>
-                        <input type="text" id="label-text-2" class="market-text-input" placeholder="Ej. Empate">
-                    </div>
-                    <div class="market-select">
-                        <label for="label-text-3" class="freebet-label"><i class="fas fa-tag"></i> Nombre CUOTA 3</label>
-                        <input type="text" id="label-text-3" class="market-text-input" placeholder="Ej. Visitante / Equipo B">
-                    </div>
-                </div>
-
-                    <!-- Tabla de cálculos FREEBET -->
-                    <div class="freebet-table-container">
-                        <table class="freebet-table">
-                            <thead>
-                                <tr>
-                                    <th>Mercado</th>
-                                    <th>Cuota</th>
-                                    <th>Apuesta</th>
-                                    <th>Ganancia</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="freebet-row freebet-main">
-                                    <td>
-                                        <div class="market-label">
-                                            <i class="fas fa-star"></i>
-                                            <span id="freebet-label-1">CUOTA 1 (FREEBET)</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="freebet-cuota" id="cuota-freebet" value="3" step="0.01" min="1.01">
-                                    </td>
-                                    <td>
-                                        <div class="ganancia-value" id="ganancia-freebet">S/840.00</div>
-                                    </td>
-                                    <td>
-                                        <div class="ganancia-final" id="ganancia-freebet-final">S/103.94</div>
-                                    </td>
-                                </tr>
-                                <tr class="freebet-row">
-                                    <td>
-                                        <div class="market-label">
-                                            <span id="freebet-label-2">CUOTA 2</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="freebet-cuota" id="cuota2" value="2.5" step="0.01" min="1.01">
-                                    </td>
-                                    <td>
-                                        <div class="apuesta-calculada" id="apuesta2">S/152.73</div>
-                                    </td>
-                                    <td>
-                                        <div class="ganancia-value" id="ganancia2">S/103.94</div>
-                                    </td>
-                                </tr>
-                                <tr class="freebet-row">
-                                    <td>
-                                        <div class="market-label">
-                                            <span id="freebet-label-3">CUOTA 3</span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <input type="number" class="freebet-cuota" id="cuota3" value="2" step="0.01" min="1.01">
-                                    </td>
-                                    <td>
-                                        <div class="apuesta-calculada" id="apuesta3">S/583.33</div>
-                                    </td>
-                                    <td>
-                                        <div class="ganancia-value" id="ganancia3">S/103.94</div>
-                                    </td>
-        </tr>
-                            </tbody>
-</table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
-    <!-- Firma del desarrollador -->
-    <footer class="developer-signature">
-        <div class="signature-content">
-            <div class="signature-text">
-                <i class="fas fa-code"></i>
-                Desarrollado por <strong>MAOR</strong> 
-                <span class="year">© 2025</span>
-            </div>
-            <div class="signature-tech">
-                <i class="fas fa-laptop-code"></i>
-                Calculadoras Deportivas Profesionales
-            </div>
-        </div>
-    </footer>
+    </template>
 
     <script src="script.js"></script>
 </body>
